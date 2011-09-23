@@ -1,17 +1,11 @@
 h1,h2,h3 { margin: 0 }
 html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
-.outer {
+
+#container {
    height: 100%;
    width: 100%;
 }
-#container {
-   position: fixed;
-   top: 0;
-   left: 0;
-   right: 0;
-   bottom: 1.4em;
-   padding: 4px 8px 4px 8px;
-}
+
 #bottom {
    position: fixed;
    bottom: 0;
@@ -23,19 +17,33 @@ html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
    font-family: "DejaVu Sans Mono", Inconsolata, Consolas, monospace;
 }
 #output {
-   height: 100%;
-   /*overflow-x: hidden;*/
-   overflow-y: scroll;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 82%;
+   padding: 4px 8px 2em 8px;
    font-family: "DejaVu Sans Mono", Inconsolata, Consolas, monospace;
    white-space: pre-wrap;
 }
-#sidebar {
-   height: 100%;
-   overflow-y: scroll;
-   width: 16%;
-   padding-left: 4px;
-   float:right;
-   border-left: 1px solid #ddd;
-   font-size: 80%;
-}
 
+#sidebar {
+   position: fixed;
+   top: 0;
+   right: 0;
+   width: 16%;
+   bottom: 2em;
+   overflow: hidden;
+   padding-left: 8px;
+   border-left: 1px solid #ddd;
+   font-family: sans-serif;
+   font-size: 80%;
+   white-space: pre;
+}
+#sidebar ul {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+}
+#sidebar ul li {
+   cursor: pointer;
+}

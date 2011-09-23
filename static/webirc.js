@@ -4,7 +4,8 @@ jQuery(function ($) {
      return function (m) {
         obj.append($("<code>").text(m));
         obj.append($("<br>"));
-        obj.scrollTop(obj.scrollTop()+10000);
+        //obj.scrollTop(obj.scrollTop()+10000);
+        $(window).scrollTop($(window).scrollTop()+10000);
      }
    }();
 
