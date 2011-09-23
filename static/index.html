@@ -1,5 +1,6 @@
+<!-- This comment makes IE render in quirks mode.. We want IE in quirks mode -->
 <!doctype html>
-<html>
+<html lang="mk">
 <head>
 <meta charset="utf-8">
 <title>WebIrc</title>
@@ -10,10 +11,9 @@
 <style>
 </style>
 </head>
-<body lang="mk">
+<body>
 <div class="outer">
-<div class="inner">
-   <div class="top">
+   <div id="container">
      <div id="sidebar"></div>
      <div id="output"></div>
    </div>
@@ -22,7 +22,6 @@
         <input id="input" autocomplete="off" maxlength="512" /><br>
      </form>
    </div>
-</div>
 </div>
 <noscript><div id="noscript">Javascript is required to use WebIRC.</div></noscript>
 </body>

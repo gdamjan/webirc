@@ -3,22 +3,23 @@ html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
 .outer {
    height: 100%;
    width: 100%;
+}
+#container {
    position: fixed;
-   left: 0;
    top: 0;
+   left: 0;
+   right: 0;
+   bottom: 1.4em;
+   padding: 4px 8px 4px 8px;
 }
-.inner {
-   height: 100%;
-   margin: 0 auto;
-}
-.top { height: 92%; padding: 4px 8px 4px 8px;}
 #bottom {
    position: fixed;
    bottom: 0;
-   width: 99%;
-}
-#input {
    width: 100%;
+}
+
+#input {
+   width: 98%;
    font-family: "DejaVu Sans Mono", Inconsolata, Consolas, monospace;
 }
 #output {
