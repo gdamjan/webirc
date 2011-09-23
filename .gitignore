@@ -1,3 +1,2 @@
-static/jquery.js
-static/sockjs.js
+static/lib/
 node_modules/
