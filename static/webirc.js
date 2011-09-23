@@ -1,5 +1,5 @@
 jQuery(function ($) {
-   window.output = function() {
+   output = function() {
      var obj = $('#output');
      return function (m) {
         obj.append($("<code>").text(m));
