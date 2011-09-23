@@ -17,5 +17,18 @@ Getting started
 ---------------
 
 Dependencies are sockjs-node, node_static, jquery and sockjs.
-You can install all of them with ``make deps`` or take a look
+You can install all of them with ``make get-deps`` or take a look
 at the Makefile it's trivial.
+
+
+TODO
+----
+
+Investigate how to pack it all together in chromeless (or similar). Maybe even change
+SockJS with a native socket.
+
+Modal popup window:
+http://sandbox.scriptiny.com/tinybox2/
+
+Automatic custom scrollbar:
+http://naeka.github.com/jquery-scrollbar/

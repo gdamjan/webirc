@@ -2,10 +2,10 @@
 
 all:
 	@echo Usage:
-	@echo "   make deps"
+	@echo "   make get-deps"
 	@echo "   make run"
 
-deps:
+get-deps:
 	mkdir -p static/lib/
 	wget http://code.jquery.com/jquery.min.js -O static/lib/jquery.js
 	wget http://sockjs.github.com/sockjs-client/sockjs-latest.min.js -O static/lib/sockjs.js
