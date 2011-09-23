@@ -1,0 +1,40 @@
+h1,h2,h3 { margin: 0 }
+html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
+.outer {
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   left: 0;
+   top: 0;
+}
+.inner {
+   height: 100%;
+   margin: 0 auto;
+}
+.top { height: 92%; padding: 4px 8px 4px 8px;}
+#bottom {
+   position: fixed;
+   bottom: 0;
+   width: 99%;
+}
+#input {
+   width: 100%;
+   font-family: "DejaVu Sans Mono", Inconsolata, Consolas, monospace;
+}
+#output {
+   height: 100%;
+   /*overflow-x: hidden;*/
+   overflow-y: scroll;
+   font-family: "DejaVu Sans Mono", Inconsolata, Consolas, monospace;
+   white-space: pre-wrap;
+}
+#sidebar {
+   height: 100%;
+   overflow-y: scroll;
+   width: 16%;
+   padding-left: 4px;
+   float:right;
+   border-left: 1px solid #ddd;
+   font-size: 80%;
+}
+
