@@ -18,10 +18,6 @@ jQuery(function ($) {
    }
    var status = output; // for now it's the same
 
-   function process (msg) {
-      output(msg.data.trim());
-   }
-
    function connect (username, password) {
       var sockjs = new SockJS('/sockjs');
 
@@ -33,6 +29,14 @@ jQuery(function ($) {
             sockjs.send(data + "\r\n");
          }
          console.log(l);
+      }
+
+      function process (msg) {
+         msg = msg.data.trim();
+         if (msg.substr(0,6) === 'PING :') {
+            send ('PONG :' + msg.substr(6))
+         }
+         output(msg);
       }
 
       sockjs.onopen = function() {
