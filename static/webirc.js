@@ -1,6 +1,7 @@
 jQuery(function ($) {
    // first show a login form
    TINY.box.show({url:'login.html', close:false, boxid:'tinybox', openjs: function() {
+      $("#username").focus();
       $("#login_form").submit(function() {
          var username = $("#username").val();
          var password = $("#password").val();
