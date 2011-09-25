@@ -29,7 +29,7 @@ jQuery(function ($) {
          if (sockjs.readyState !== SockJS.OPEN) {
             l += ' (error, connection not established)';
          } else {
-            sockjs.send(data + "\r\n");
+            sockjs.send(data);
          }
          console.log(l);
       }

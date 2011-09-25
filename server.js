@@ -26,8 +26,8 @@ sockjs_server.on('open', function(web_sock) {
          irc_sock.setEncoding('utf-8');
 
          web_sock.on('message', function(msg) {
-            // console.log(msg.data.trim());
-            irc_sock.write(msg.data);
+            // console.log(msg.data);
+            irc_sock.write(msg.data + "\r\n");
          });
 
          var buffer = '';
