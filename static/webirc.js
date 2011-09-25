@@ -33,12 +33,12 @@ jQuery(function ($) {
          console.log(l);
       }
 
-      function process (msg) {
-         msg = msg.data.trim();
-         if (msg.substr(0,6) === 'PING :') {
-            send ('PONG :' + msg.substr(6))
+      function process (ev) {
+         var obj = parseMessage(ev.data);
+         if (obj.command === 'PING') {
+            send ('PONG :' + obj.args[0])
          }
-         output(msg);
+         output(ev.data);
       }
 
       sockjs.onopen = function() {
@@ -46,18 +46,17 @@ jQuery(function ($) {
          sockjs.send({host: host, port:port});
       };
 
-      sockjs.onmessage = function(msg) {
-         if (msg.data.connected === true) {
+      sockjs.onmessage = function(ev) {
+         if (ev.data.connected === true) {
             send("PASS " + username + ":" + password);
             send("NICK unimportant");
             send("USER unimportant");
-            sockjs.onmessage = function(msg) {
-               process(msg);
-            };
+            // now replace it with the real onmessage handler
+            sockjs.onmessage = process;
             TINY.box.hide();
             $('#input_line').focus();
          } else {
-            console.log(msg);
+            console.log(ev);
          }
       }
 
