@@ -29,6 +29,10 @@ SockJS with a native socket.
 
 Modal popup window:
 http://sandbox.scriptiny.com/tinybox2/
+http://www.scriptiny.com/2011/03/javascript-modal-windows/
 
 Automatic custom scrollbar:
 http://naeka.github.com/jquery-scrollbar/
+
+Maybe use this for a tabbar on top
+http://robertnyman.com/2010/02/24/css-display-inline-block-why-it-rocks-and-why-it-sucks/
