@@ -20,6 +20,8 @@ Dependencies are sockjs-node, node_static, jquery and sockjs.
 You can install all of them with ``make get-deps`` or take a look
 at the Makefile it's trivial.
 
+Then ``make run`` will run the server (i.e. node server.js).
+
 
 TODO
 ----
