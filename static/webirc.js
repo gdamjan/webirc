@@ -35,10 +35,17 @@ jQuery(function ($) {
 
       function process (ev) {
          var obj = parseMessage(ev.data);
-         if (obj.command === 'PING') {
-            send ('PONG :' + obj.args[0])
+         switch (obj.command) {
+            case 'PING':
+               send ('PONG :' + obj.args[0]);
+               break;
+            case 'PRIVMSG':
+            case 'NOTICE':
+               output(ev.data);
+               break;
+            default:
+               console.log(ev.data);
          }
-         output(ev.data);
       }
 
       sockjs.onopen = function() {
