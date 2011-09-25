@@ -4,8 +4,10 @@ jQuery(function ($) {
       $("#login_form").submit(function() {
          var username = $("#username").val();
          var password = $("#password").val();
+         var host = $("#host").val();
+         var port = $("#port").val();
          $("#tinybox").html("<div style='text-align: center'><img src='images/preload.gif'></div>");
-         connect(username, password);
+         connect(host, port, username, password);
          return false;
       })
    }})
@@ -18,7 +20,7 @@ jQuery(function ($) {
    }
    var status = output; // for now it's the same
 
-   function connect (username, password) {
+   function connect (host, port, username, password) {
       var sockjs = new SockJS('/sockjs');
 
       function send (data) {
@@ -41,6 +43,7 @@ jQuery(function ($) {
 
       sockjs.onopen = function() {
          status(' [*] Connected (using: '+sockjs.protocol+')');
+         sockjs.send({host: host, port:port});
       };
 
       sockjs.onmessage = function(msg) {

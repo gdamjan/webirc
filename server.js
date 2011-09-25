@@ -18,27 +18,30 @@ var sockjs_server = new sockjs.Server(sockjs_opts);
  * When one of the sockets is closed also close the other socket.
  */
 sockjs_server.on('open', function(web_sock) {
-   // hardcoded host & port… this is my znc irc bouncer
-   // you should customize this to your own liking
-   var irc_sock = tls.connect(6666, "damjan.softver.org.mk", function () {
-      irc_sock.setEncoding('utf-8');
-      web_sock.send({connected: true});
-      web_sock.on('message', function(msg) {
-         console.log(msg.data.trim());
-         irc_sock.write(msg.data);
-      });
-      irc_sock.on('data', function(data) {
-         console.log(data.trim());
-         web_sock.send(data);
-      });
-      // handle close & errors
-      web_sock.on('close', function(e) {
-         console.log('close ' + web_sock, e);
-         irc_sock.destroySoon();
-      });
-      irc_sock.on('close', function(e) {
-         console.log('irc connection closed');
-         web_sock.close();
+   web_sock.once('message', function(msg) {
+      var port = Number(msg.data.port);
+      var host = msg.data.host;
+      console.log("Request to connect to: ", host, port);
+      var irc_sock = tls.connect(port, host, function () {
+         irc_sock.setEncoding('utf-8');
+         web_sock.on('message', function(msg) {
+            console.log(msg.data.trim());
+            irc_sock.write(msg.data);
+         });
+         irc_sock.on('data', function(data) {
+            console.log(data.trim());
+            web_sock.send(data);
+         });
+         // handle close & errors
+         web_sock.on('close', function(e) {
+            console.log('close ' + web_sock, e);
+            irc_sock.destroySoon();
+         });
+         irc_sock.on('close', function(e) {
+            console.log('irc connection closed');
+            web_sock.close();
+         });
+         web_sock.send({connected: true});
       });
    });
 });
