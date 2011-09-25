@@ -24,14 +24,23 @@ sockjs_server.on('open', function(web_sock) {
       console.log("Request to connect to: ", host, port);
       var irc_sock = tls.connect(port, host, function () {
          irc_sock.setEncoding('utf-8');
+
          web_sock.on('message', function(msg) {
             console.log(msg.data.trim());
             irc_sock.write(msg.data);
          });
-         irc_sock.on('data', function(data) {
-            console.log(data.trim());
-            web_sock.send(data);
+
+         var buffer = '';
+         irc_sock.on('data', function(chunk) {
+            buffer += chunk;
+            var lines = buffer.split("\r\n");
+            buffer = lines.pop();
+            lines.forEach(function (line) {
+               console.log(line);
+               web_sock.send(line);
+            });
          });
+
          // handle close & errors
          web_sock.on('close', function(e) {
             console.log('close ' + web_sock, e);
