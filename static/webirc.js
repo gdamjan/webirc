@@ -2,9 +2,9 @@ jQuery(function ($) {
    // first show a login form
    TINY.box.show({url:'login.html', close:false, boxid:'tinybox', openjs: function() {
       $("#login_form").submit(function() {
-         $("#tinybox").html("<div style='text-align: center'><img src='images/preload.gif'></div>");
          var username = $("#username").val();
          var password = $("#password").val();
+         $("#tinybox").html("<div style='text-align: center'><img src='images/preload.gif'></div>");
          connect(username, password);
          return false;
       })
