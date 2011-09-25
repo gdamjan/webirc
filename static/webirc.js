@@ -68,6 +68,8 @@ jQuery(function ($) {
             sockjs.onmessage = process;
             TINY.box.hide();
             $('#input_line').focus();
+            $('#sidebar').jScrollPane({contentWidth: 1});
+            $(window).resize(function() {$("#sidebar").data('jsp').reinitialise()});
          } else {
             console.log(ev);
          }

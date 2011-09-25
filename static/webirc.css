@@ -49,3 +49,18 @@ html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
    cursor: pointer;
    white-space: pre;
 }
+#sidebar .jspVerticalBar {
+   /* visibility: hidden;*/
+   opacity: 0.1;
+   width: 6px;
+}
+#sidebar:hover .jspVerticalBar {
+   /* visibility: visible;*/
+   opacity: 1;
+}
+#sidebar .jspDrag {
+    background-color: #1A3CB1;
+}
+#sidebar .jspTrack {
+    background-color: #ACBEFD;
+}
