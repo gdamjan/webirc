@@ -22,12 +22,13 @@ sockjs_server.on('open', function(web_sock) {
    // you should customize this to your own liking
    var irc_sock = tls.connect(6666, "damjan.softver.org.mk", function () {
       irc_sock.setEncoding('utf-8');
+      web_sock.send({connected: true});
       web_sock.on('message', function(msg) {
-         console.log(msg.data);
+         console.log(msg.data.trim());
          irc_sock.write(msg.data);
       });
       irc_sock.on('data', function(data) {
-         console.log(data);
+         console.log(data.trim());
          web_sock.send(data);
       });
       // handle close & errors
@@ -43,6 +44,9 @@ sockjs_server.on('open', function(web_sock) {
 });
 
 
+/*
+ * Standard nodejs http stuff + static file serving from the static/ directory
+ */
 var static_directory = new node_static.Server(path.join(__dirname, 'static'));
 
 var http_server = http.createServer();

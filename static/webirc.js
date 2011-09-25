@@ -16,44 +16,56 @@ jQuery(function ($) {
       view.append('<div>' + m + '</div>');
       w.scrollTop(w.scrollTop()+10000);
    }
+   var status = output; // for now it's the same
 
+   function process (msg) {
+      output(msg.data.trim());
+   }
 
    function connect (username, password) {
       var sockjs = new SockJS('/sockjs');
+
       function send (data) {
-         sockjs.send(data + "\r\n");
+         var l = ' [ ] sending: ' + JSON.stringify(data);
+         if (sockjs.readyState !== SockJS.OPEN) {
+            l += ' (error, connection not established)';
+         } else {
+            sockjs.send(data + "\r\n");
+         }
+         console.log(l);
       }
+
       sockjs.onopen = function() {
-         TINY.box.hide();
-         $('#input_line').focus();
-         output(' [*] Connected (using: '+sockjs.protocol+')');
-         // FIXME this delay of 100ms is a hack around stupid behaviour in sockjs-node,
-         // will see.
-         setTimeout(function() {
+         status(' [*] Connected (using: '+sockjs.protocol+')');
+      };
+
+      sockjs.onmessage = function(msg) {
+         if (msg.data.connected === true) {
             send("PASS " + username + ":" + password);
             send("NICK unimportant");
             send("USER unimportant");
-         }, 100);
-      };
+            sockjs.onmessage = function(msg) {
+               process(msg);
+            };
+            TINY.box.hide();
+            $('#input_line').focus();
+         } else {
+            console.log(msg);
+         }
+      }
+
       sockjs.onclose = function(e) {
-         output(' [*] Disconnected ('+e.status + ' ' + e.reason+ ')');
+         status(' [*] Disconnected ('+e.status + ' ' + e.reason+ ')');
       };
-      sockjs.onmessage = function(msg) {
-         output(msg.data.trim());
-      };
+
 
       $('#input_form').submit(function() {
          var val = $('#input_line').val();
          $('#input_line').val('');
-         var l = ' [ ] sending: ' + JSON.stringify(val);
-         if (sockjs.readyState !== SockJS.OPEN) {
-            l += ' (error, connection not established)';
-         } else {
-            send(val);
-         }
-         console.log(l);
+         send(val);
          return false;
       });
+
       return sockjs;
    }
 })
