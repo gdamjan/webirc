@@ -20,7 +20,11 @@ Dependencies are sockjs-node, node_static, jquery and sockjs.
 You can install all of them with ``make get-deps`` or take a look
 at the Makefile it's trivial.
 
-Then ``make run`` will run the server (i.e. node server.js).
+Next, change the server and port in ``login.html`` to your own irc bouncer
+(or even a real irc server). Choose a SSL port, since for now that's only one
+supported (the secure field in login.html doesn't do anything).
+
+At last, ``make run`` will run the server (i.e. ``node server.js``).
 
 
 TODO
