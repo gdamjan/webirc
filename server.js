@@ -26,7 +26,7 @@ sockjs_server.on('open', function(web_sock) {
          irc_sock.setEncoding('utf-8');
 
          web_sock.on('message', function(msg) {
-            console.log(msg.data.trim());
+            // console.log(msg.data.trim());
             irc_sock.write(msg.data);
          });
 
@@ -36,7 +36,7 @@ sockjs_server.on('open', function(web_sock) {
             var lines = buffer.split("\r\n");
             buffer = lines.pop();
             lines.forEach(function (line) {
-               console.log(line);
+               // console.log(line);
                web_sock.send(line);
             });
          });
