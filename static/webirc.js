@@ -44,6 +44,11 @@ jQuery(function ($) {
             case 'NOTICE':
                output(ev.data);
                break;
+            case '704':
+            case '705':
+            case '706':
+               output(ev.data);
+               break;
             default:
                console.log(ev.data);
          }
