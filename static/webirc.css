@@ -13,6 +13,7 @@ html, body { margin: 0; padding: 0; height: 100%; width: 100%;}
 }
 
 #input_line {
+   margin: 0;
    width: 98%;
    font-family: "DejaVu Sans Mono", Inconsolata, Consolas, monospace;
 }
